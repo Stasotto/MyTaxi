@@ -2,7 +2,18 @@
     <string name="app_name">MyTaxi</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="title_activity_driver_maps">DriverMapsActivity</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="TvGreetingsOnStartAuth">Для начала создайте аккаунт</string>
+    <string name="tvGreetingsOnStartAuth">Для начала создайте аккаунт</string>
+    <string name="etNameHint">Ваше имя</string>
+    <string name="etSurnameHint">Ваша фамилия</string>
+    <string name="etMailHint">Адрес электронной почты</string>
+    <string name="etPhoneHint">Номер телефона</string>
+    <string name="etPasswordHint">Пароль</string>
+    <string name="etCityHint">Город</string>
+    <string name="etBonusCodeHint">Бонус-код</string>
+    <string name="btnContinue">Продолжить</string>
+    <string name="tvPartnershipGreetings">Выберите вариант партнерства с нами:</string>
+    <string name="tvAddPhotosGreetings">Добро пожаловать,</string>
+    <string name="tvAddPhotosNextSteps">Следующие шаги для настройки аккаунта:</string>
+    <string name="btnDoneReg">Завершить</string>
 </resources>

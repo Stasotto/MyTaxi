@@ -4,16 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#000000"
     tools:context=".presentation.activities.DriverStartAuthFragment">
 
 
     <TextView
         android:id="@+id/tvGreetingsOnStartAuth"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/TvGreetingsOnStartAuth"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp"
+        android:text="@string/tvGreetingsOnStartAuth"
         android:textColor="@color/black"
-        android:layout_marginTop="20dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,12 +32,100 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
+        android:id="@+id/etName"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="25dp"
+        android:hint="@string/etNameHint"
+        android:inputType="textPersonName"
+        android:textSize="12sp"
         app:layout_constraintEnd_toStartOf="@+id/horizontalDivider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvGreetingsOnStartAuth" />
+
+    <EditText
+        android:id="@+id/etSurname"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="25dp"
+        android:hint="@string/etSurnameHint"
+        android:inputType="textPersonName"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/horizontalDivider"
+        app:layout_constraintTop_toBottomOf="@+id/tvGreetingsOnStartAuth" />
+
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="25dp"
+        android:hint="@string/etMailHint"
+        android:inputType="textEmailAddress"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/etSurname"
+        app:layout_constraintStart_toStartOf="@id/etName"
+        app:layout_constraintTop_toBottomOf="@id/etName" />
+
+    <EditText
+        android:id="@+id/etPhone"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="25dp"
+        android:hint="@string/etPhoneHint"
+        android:inputType="phone"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/etSurname"
+        app:layout_constraintStart_toStartOf="@id/etName"
+        app:layout_constraintTop_toBottomOf="@id/etEmail" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="25dp"
+        android:hint="@string/etPasswordHint"
+        android:inputType="textPassword"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/etSurname"
+        app:layout_constraintStart_toStartOf="@id/etName"
+        app:layout_constraintTop_toBottomOf="@id/etPhone" />
+
+    <EditText
+        android:id="@+id/etCity"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="25dp"
+        android:hint="@string/etCityHint"
+        android:inputType="text"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/etSurname"
+        app:layout_constraintStart_toStartOf="@id/etName"
+        app:layout_constraintTop_toBottomOf="@id/etPassword" />
+
+    <EditText
+        android:id="@+id/etBonusCode"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="25dp"
+        android:hint="@string/etBonusCodeHint"
+        android:inputType="textPassword"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/etSurname"
+        app:layout_constraintStart_toStartOf="@id/etName"
+        app:layout_constraintTop_toBottomOf="@id/etCity" />
+
+    <Button
+        android:id="@+id/btnContinueToPartnership"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:text="@string/btnContinue"
+        android:textColor="@color/white"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

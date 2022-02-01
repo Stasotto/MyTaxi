@@ -3,8 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/layout/add_photo_item.xml" value="0.1793478260869565" />
-        <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/layout/fragment_driver_start_auth.xml" value="0.264" />
+        <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/layout/activity_driver_auth.xml" value="0.1793478260869565" />
+        <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/layout/activity_driver_maps.xml" value="0.1793478260869565" />
+        <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/layout/activity_maps.xml" value="0.1793478260869565" />
+        <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/layout/add_photo_item.xml" value="0.264" />
+        <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/layout/fragment_driver_add_photos.xml" value="0.2" />
+        <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/layout/fragment_driver_auth_partnership.xml" value="0.2" />
+        <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/layout/fragment_driver_start_auth.xml" value="0.2" />
+        <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/layout/partnership_item.xml" value="0.264" />
       </map>
     </option>
   </component>
