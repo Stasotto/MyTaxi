@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">MyTaxi</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="title_activity_driver_maps">DriverMapsActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="TvGreetingsOnStartAuth">Для начала создайте аккаунт</string>
 </resources>
