@@ -16,4 +16,12 @@
     <string name="tvAddPhotosGreetings">Добро пожаловать,</string>
     <string name="tvAddPhotosNextSteps">Следующие шаги для настройки аккаунта:</string>
     <string name="btnDoneReg">Завершить</string>
+    <string name="btnTakePhoto">Снимок</string>
+    <string name="btnRetakePhoto">Еще раз</string>
+    <string name="tvRecommendations">Сфотографируйте документ так, чтобы в кадр попали все углы. Убедитесь, что документ четко виден.</string>
+    <string name="tvMakePhotoDocPassport">Сфотографируйте разворот с фотографией паспорта</string>
+    <string name="toastPhoto">Фото добавлено</string>
+
+
+
 </resources>
