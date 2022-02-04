@@ -8,8 +8,8 @@
     android:layout_height="wrap_content"
     android:layout_rowWeight="10"
     android:layout_gravity="bottom"
-    android:backgroundTint="#F4F3F3"
-    app:cardCornerRadius="20dp"
+    android:backgroundTint="@color/darkerWhite"
+    app:cardCornerRadius="30dp"
     tools:context=".presentation.activities.DriverMapsActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,8 +20,8 @@
             android:id="@+id/imDelivery"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
             android:src="@drawable/ic_baseline_delivery_24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -52,12 +52,12 @@
             android:id="@+id/etStart"
             android:layout_width="300dp"
             android:layout_height="48dp"
-            android:layout_marginStart="10dp"
             android:hint="@string/from"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@id/imStartCircle"
-            app:layout_constraintStart_toEndOf="@+id/imStartCircle"
+            app:layout_constraintEnd_toEndOf="@+id/cvBigCar"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
             app:layout_constraintTop_toTopOf="@+id/imStartCircle" />
 
         <ImageView
@@ -74,12 +74,12 @@
             android:id="@+id/etEnd"
             android:layout_width="300dp"
             android:layout_height="48dp"
-            android:layout_marginStart="10dp"
             android:hint="@string/to"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@id/imEndCircle"
-            app:layout_constraintStart_toEndOf="@+id/imEndCircle"
+            app:layout_constraintEnd_toEndOf="@+id/cvBigCar"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
             app:layout_constraintTop_toTopOf="@+id/imEndCircle" />
 
         <View
@@ -92,11 +92,12 @@
             app:layout_constraintTop_toBottomOf="@+id/etEnd" />
 
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/cardView"
+            android:layout_width="100dp"
+            android:layout_height="115dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="30dp"
-            android:backgroundTint="#DCD2D2"
+            android:backgroundTint="@color/backGrey"
             app:cardCornerRadius="20dp"
             app:layout_constraintEnd_toStartOf="@id/dividerV"
             app:layout_constraintTop_toBottomOf="@+id/etEnd">
@@ -124,6 +125,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:text="Стандарт"
+                    android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/imCar" />
@@ -132,9 +134,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:layout_marginBottom="10dp"
                     android:text="Цена"
                     android:textColor="@color/black"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvCar" />
@@ -146,12 +148,12 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvBigCar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="115dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:backgroundTint="#DCD2D2"
+            android:backgroundTint="@color/backGrey"
             app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toTopOf="@+id/clBottom"
             app:layout_constraintStart_toEndOf="@id/dividerV"
@@ -179,6 +181,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:textColor="@color/black"
                     android:text="Грузовой"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -188,8 +191,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:layout_marginBottom="10dp"
                     android:text="Цена"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -214,7 +217,7 @@
                 android:layout_width="200dp"
                 android:layout_height="60dp"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="#FFEB3B"
+                android:backgroundTint="@color/backYellow"
                 android:text="Выбрать размер"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
