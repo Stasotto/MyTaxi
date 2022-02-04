@@ -3,15 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/drawable/ic_baseline_arrow_right_24.xml" value="0.1" />
+        <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/drawable/ic_baseline_car_24.xml" value="0.18229166666666666" />
+        <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/drawable/ic_baseline_credit_card_24.xml" value="0.1" />
+        <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/drawable/ic_baseline_delivery_24.xml" value="0.1" />
+        <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/drawable/ic_baseline_freight_car_24.xml" value="0.1" />
+        <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/drawable/ic_baseline_money_24.xml" value="0.1" />
+        <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/drawable/ic_baseline_navigation_24.xml" value="0.1" />
         <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/layout-v28/fragment_driver_start_auth.xml" value="0.264" />
         <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/layout/activity_driver_auth.xml" value="0.1793478260869565" />
         <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/layout/activity_driver_maps.xml" value="0.1793478260869565" />
         <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/layout/activity_maps.xml" value="0.1793478260869565" />
         <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/layout/add_photo_item.xml" value="0.264" />
+        <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/layout/delivery.xml" value="0.264" />
         <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/layout/fragment_driver_add_photos.xml" value="0.264" />
         <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/layout/fragment_driver_auth_make_photo.xml" value="0.264" />
         <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/layout/fragment_driver_auth_partnership.xml" value="0.264" />
-        <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/layout/fragment_driver_start_auth.xml" value="0.6" />
+        <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/layout/fragment_driver_start_auth.xml" value="0.264" />
         <entry key="..\:/Android Apps/MyTaxi/app/src/main/res/layout/partnership_item.xml" value="0.264" />
       </map>
     </option>
