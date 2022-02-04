@@ -10,9 +10,9 @@
         android:id="@+id/tvMakePhotoDoc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="60dp"
-        android:layout_marginStart="60dp"
         android:gravity="center"
         android:text="@string/tvMakePhotoDocPassport"
         android:textSize="14sp"
@@ -25,10 +25,10 @@
         android:id="@+id/tvRecommendations"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
+        android:gravity="center"
         android:text="@string/tvRecommendations"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,35 +49,59 @@
         <FrameLayout
             android:id="@+id/content"
             android:layout_width="280dp"
-            android:layout_gravity="center"
-            android:layout_height="370dp" />
+            android:layout_height="370dp"
+            android:layout_gravity="center" />
     </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/btnTakePhoto"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
         android:layout_gravity="bottom|center"
+        android:backgroundTint="@color/backYellow"
+        android:shadowColor="@color/black"
         android:text="@string/btnTakePhoto"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/cardPhoto"
-        app:layout_constraintStart_toStartOf="@+id/cardPhoto"
-        app:layout_constraintTop_toBottomOf="@+id/cardPhoto" />
+        app:layout_constraintStart_toStartOf="@+id/cardPhoto"  />
 
     <Button
         android:id="@+id/btnRetakePhoto"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/backYellow"
+        android:shadowColor="@color/black"
         android:text="@string/btnRetakePhoto"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         android:visibility="invisible"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSave"
         app:layout_constraintEnd_toEndOf="@+id/cardPhoto"
-        app:layout_constraintStart_toStartOf="@+id/cardPhoto"
-        app:layout_constraintTop_toBottomOf="@+id/cardPhoto" />
+        app:layout_constraintStart_toStartOf="@+id/cardPhoto" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/backYellow"
+        android:shadowColor="@color/black"
+        android:text="@string/btnSave"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/cardPhoto"
+        app:layout_constraintStart_toStartOf="@+id/cardPhoto"/>
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="300dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardPhoto"
         app:layout_constraintEnd_toEndOf="@+id/cardPhoto"
         app:layout_constraintStart_toStartOf="@+id/cardPhoto"

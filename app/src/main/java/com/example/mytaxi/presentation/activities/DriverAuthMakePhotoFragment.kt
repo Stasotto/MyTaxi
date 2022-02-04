@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -13,10 +14,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import com.example.mytaxi.R
 import com.example.mytaxi.databinding.FragmentDriverAuthMakePhotoBinding
 import com.github.florent37.camerafragment.CameraFragment
@@ -35,17 +39,33 @@ import java.io.FileNotFoundException
 class DriverAuthMakePhotoFragment : Fragment() {
 
 
-    private val PATH = "/storage/self/primary"
-    private val FILE_NAME = "photo_doc_auth_Taxi"
+    private val PATH = "/storage/self/primary/DCIM/Camera"
+    private var file = ""
+    private val FILE_PASSPORT = "passport_auth_Taxi"
+    private val FILE_DL_FRONT = "dl_f_auth_Taxi"
+    private val FILE_DL_BACK = "dl_b_auth_Taxi"
 
     private lateinit var cameraFragment: CameraFragment
     private var _cameraBinding: FragmentDriverAuthMakePhotoBinding? = null
     private val cameraBinding get() = _cameraBinding!!
+    private val driverLiveData: DriverLiveData by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        if (driverLiveData.docType.value!!.contains("1") && driverLiveData.driverData.value?.passportPhoto == null) {
+            file = FILE_PASSPORT
+        }
+
+        if (driverLiveData.docType.value!!.contains("2") && driverLiveData.driverData.value?.licenceFace == null) {
+            file = FILE_DL_FRONT
+        }
+
+        if (driverLiveData.docType.value!!.contains("3") && driverLiveData.driverData.value?.licenceBack == null) {
+            file = FILE_DL_BACK
+        }
         _cameraBinding = FragmentDriverAuthMakePhotoBinding.inflate(inflater, container, false)
 
         return cameraBinding.root
@@ -65,11 +85,17 @@ class DriverAuthMakePhotoFragment : Fragment() {
             CoroutineScope(Dispatchers.Main).launch {
                 cameraBinding.pbPhoto.visibility = View.VISIBLE
                 delay(3000)
+                Toast.makeText(
+                    requireActivity().applicationContext,
+                    R.string.toastPhoto,
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
                 loadImageFromStorage(PATH)
                 cameraBinding.pbPhoto.visibility = View.INVISIBLE
                 cameraBinding.imageView.visibility = View.VISIBLE
                 cameraBinding.btnRetakePhoto.visibility = View.VISIBLE
-
+                cameraBinding.btnSave.visibility = View.VISIBLE
             }
         }
 
@@ -78,37 +104,49 @@ class DriverAuthMakePhotoFragment : Fragment() {
             cameraBinding.btnRetakePhoto.visibility = View.INVISIBLE
             cameraBinding.imageView.visibility = View.INVISIBLE
             cameraBinding.cardPhoto.visibility = View.VISIBLE
+            cameraBinding.btnSave.visibility = View.INVISIBLE
             CoroutineScope(Dispatchers.Main).launch {
-                val file = File(PATH, "$FILE_NAME.jpg")
+                val file = File(PATH, "$file.jpg")
                 file.delete()
                 delay(1000)
                 cameraBinding.btnTakePhoto.visibility = View.VISIBLE
             }
-
-
         }
-    }
 
+        cameraBinding.btnSave.setOnClickListener {
+            val bitmap = (cameraBinding.imageView.drawable as BitmapDrawable).bitmap
+            if (driverLiveData.docType.value!!.contains("1") && file == FILE_PASSPORT) {
+                driverLiveData.docType.value += "4"
+                driverLiveData.driverData.value!!.passportPhoto = bitmap
+            }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+            if (driverLiveData.docType.value!!.contains("2") && file == FILE_DL_FRONT) {
+                driverLiveData.docType.value += "5"
+                driverLiveData.driverData.value!!.licenceFace = bitmap
+            }
 
-        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            startActivityCameraFragment()
+            if (driverLiveData.docType.value!!.contains("3") && file == FILE_DL_BACK) {
+                driverLiveData.docType.value += "6"
+                driverLiveData.driverData.value!!.licenceBack = bitmap
+            }
+
+            view.findNavController()
+                .navigate(R.id.action_driverAuthMakePhotoFragment_to_driverAddPhotosFragment)
         }
+
     }
 
     private fun hasPermissionAndOpenCamera() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
             == PackageManager.PERMISSION_GRANTED
         ) {
+            Log.d("!!!","permission granted")
             startActivityCameraFragment()
         } else {
+            Log.d("!!!","permission not granted")
             requestPermission()
+            hasPermissionAndOpenCamera()
+
         }
     }
 
@@ -117,6 +155,16 @@ class DriverAuthMakePhotoFragment : Fragment() {
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(com.example.mytaxi.R.id.content, cameraFragment, "Nothing")
             .commit()
+        Log.d("!!!","camera frag started")
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            startActivityCameraFragment()
+
+        }
     }
 
     private fun requestPermission() {
@@ -135,7 +183,7 @@ class DriverAuthMakePhotoFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.R)
     private fun takeNewPhoto() {
-            cameraFragment.takePhotoOrCaptureVideo(callBackListener, PATH, FILE_NAME)
+        cameraFragment.takePhotoOrCaptureVideo(callBackListener, PATH, file)
     }
 
     private var callBackListener: CameraFragmentResultListener =
@@ -145,20 +193,12 @@ class DriverAuthMakePhotoFragment : Fragment() {
             }
 
             override fun onPhotoTaken(bytes: ByteArray?, filePath: String?) {
-
-                Toast.makeText(
-                    requireActivity().applicationContext,
-                    R.string.toastPhoto,
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-                //onDestroy()
             }
         }
 
     private fun loadImageFromStorage(path: String) {
         try {
-            val f = File(path, "$FILE_NAME.jpg")
+            val f = File(path, "$file.jpg")
             val b = BitmapFactory.decodeStream(FileInputStream(f))
             val img: ImageView = cameraBinding.imageView
             img.rotation = 90f
@@ -168,8 +208,6 @@ class DriverAuthMakePhotoFragment : Fragment() {
             e.printStackTrace()
         }
     }
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()
