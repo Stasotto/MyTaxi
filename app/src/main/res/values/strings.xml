@@ -26,6 +26,9 @@
     <string name="dlFaceLabel">Водительское удостоверение - лицевая сторона</string>
     <string name="passportLabel">Паспорт - разворот с фотографией</string>
     <string name="btnSave">Сохранить</string>
+    <string name="delivery">Доставка</string>
+    <string name="from">Откуда</string>
+    <string name="to">Куда</string>
 
 
 </resources>

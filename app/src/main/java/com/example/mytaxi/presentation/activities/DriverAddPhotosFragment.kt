@@ -45,6 +45,9 @@ class DriverAddPhotosFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        addPhotosBinding.tvAddPhotosGreetings.text =
+            addPhotosBinding.tvAddPhotosGreetings.text.toString() + " " + driverLiveData.driverData.value!!.driverName
+
         addPhotosBinding.cvPassport.setOnClickListener {
             driverLiveData.docType.value += "1"
             view.findNavController()
