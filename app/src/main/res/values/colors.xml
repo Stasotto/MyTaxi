@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="et_back">#C0C2D1</color>
+    <color name="error_red">#C80E0E</color>
+    <color name="backYellow">#FFC107</color>
 </resources>

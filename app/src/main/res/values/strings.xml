@@ -16,4 +16,16 @@
     <string name="tvAddPhotosGreetings">Добро пожаловать,</string>
     <string name="tvAddPhotosNextSteps">Следующие шаги для настройки аккаунта:</string>
     <string name="btnDoneReg">Завершить</string>
+    <string name="btnTakePhoto">Снимок</string>
+    <string name="btnRetakePhoto">Еще раз</string>
+    <string name="tvRecommendations">Сфотографируйте документ так, чтобы в кадр попали все углы. Убедитесь, что документ четко виден.</string>
+    <string name="tvMakePhotoDocPassport">Сфотографируйте разворот с фотографией паспорта</string>
+    <string name="toastPhoto">Проверьте фото</string>
+    <string name="toastPartnership">Выберите вариант партнерства</string>
+    <string name="dlBackLabel">Водительское удостоверение - обратная сторона</string>
+    <string name="dlFaceLabel">Водительское удостоверение - лицевая сторона</string>
+    <string name="passportLabel">Паспорт - разворот с фотографией</string>
+    <string name="btnSave">Сохранить</string>
+
+
 </resources>

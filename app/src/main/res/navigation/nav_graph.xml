@@ -1,6 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/driverStartAuthFragment">
 
+    <fragment
+        android:id="@+id/driverAuthMakePhotoFragment"
+        android:name="com.example.mytaxi.presentation.activities.DriverAuthMakePhotoFragment"
+        android:label="fragment_driver_auth_make_photo"
+        tools:layout="@layout/fragment_driver_auth_make_photo" >
+        <action
+            android:id="@+id/action_driverAuthMakePhotoFragment_to_driverAddPhotosFragment"
+            app:destination="@id/driverAddPhotosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/driverStartAuthFragment"
+        android:name="com.example.mytaxi.presentation.activities.DriverStartAuthFragment"
+        android:label="fragment_driver_start_auth"
+        tools:layout="@layout/fragment_driver_start_auth" >
+        <action
+            android:id="@+id/action_driverStartAuthFragment_to_driverAuthPartnershipFragment"
+            app:destination="@id/driverAuthPartnershipFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/driverAuthPartnershipFragment"
+        android:name="com.example.mytaxi.presentation.activities.DriverAuthPartnershipFragment"
+        android:label="fragment_driver_auth_partnership"
+        tools:layout="@layout/fragment_driver_auth_partnership" >
+        <action
+            android:id="@+id/action_driverAuthPartnershipFragment_to_driverAddPhotosFragment"
+            app:destination="@id/driverAddPhotosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/driverAddPhotosFragment"
+        android:name="com.example.mytaxi.presentation.activities.DriverAddPhotosFragment"
+        android:label="fragment_driver_add_photos"
+        tools:layout="@layout/fragment_driver_add_photos" >
+        <action
+            android:id="@+id/action_driverAddPhotosFragment_to_driverAuthMakePhotoFragment"
+            app:destination="@id/driverAuthMakePhotoFragment" />
+    </fragment>
 </navigation>
