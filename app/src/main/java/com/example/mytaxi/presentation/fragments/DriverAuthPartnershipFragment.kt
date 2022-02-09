@@ -10,14 +10,14 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.mytaxi.R
 import com.example.mytaxi.databinding.FragmentDriverAuthPartnershipBinding
-import com.example.mytaxi.presentation.viewmodels.DriverLiveData
+import com.example.mytaxi.presentation.viewmodels.DriverViewModel
 
 class DriverAuthPartnershipFragment : Fragment() {
 
 
     private var _partnershipAuthBinding: FragmentDriverAuthPartnershipBinding? = null
     private val partnershipAuthBinding get() = _partnershipAuthBinding!!
-    private val driverLiveData: DriverLiveData by activityViewModels()
+    private val driverViewModel: DriverViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,17 +34,17 @@ class DriverAuthPartnershipFragment : Fragment() {
         partnershipAuthBinding.rbLivery.setOnClickListener {
             partnershipAuthBinding.rbLight.isChecked = false
             partnershipAuthBinding.rbLivery.isChecked = true
-            driverLiveData.driverData.value?.partnershipVariant = 1
+            driverViewModel.driverData.value?.partnershipVariant = 1
         }
 
         partnershipAuthBinding.rbLight.setOnClickListener {
             partnershipAuthBinding.rbLight.isChecked = true
             partnershipAuthBinding.rbLivery.isChecked = false
-            driverLiveData.driverData.value?.partnershipVariant = 2
+            driverViewModel.driverData.value?.partnershipVariant = 2
         }
 
         partnershipAuthBinding.btnContinueToAddPhotos.setOnClickListener {
-            if (driverLiveData.driverData.value!!.partnershipVariant == 0) {
+            if (driverViewModel.driverData.value!!.partnershipVariant == 0) {
                 Toast.makeText(
                     requireActivity().applicationContext,
                     R.string.toastPartnership,

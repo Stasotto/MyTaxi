@@ -26,9 +26,6 @@ class UserMapFragment : Fragment(R.layout.fragment_map_user) {
                     "Время в пути: ${UserMapViewModels.a?.rows?.get(0)?.elements?.get(0)?.duration?.text}"
                 binding.distance.text = disText
                 binding.timeInRoad.text = durText
-                if (binding.distance.text != null && binding.timeInRoad.text != null) {
-                    UserMapViewModels.a = null
-                }
             }
             handler.postDelayed(this, 1000)
         }
@@ -38,7 +35,7 @@ class UserMapFragment : Fragment(R.layout.fragment_map_user) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMapUserBinding.inflate(inflater, container, false)
 
         return binding.root

@@ -12,8 +12,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.mytaxi.R
 import com.example.mytaxi.databinding.FragmentDriverAddPhotosBinding
-import com.example.mytaxi.presentation.viewmodels.DriverLiveData
-import com.example.mytaxi.presentation.activities.DriverMapsActivity
+import com.example.mytaxi.presentation.viewmodels.DriverViewModel
+import com.example.mytaxi.presentation.activities.UserMapsActivity
 
 
 class DriverAddPhotosFragment : Fragment() {
@@ -21,24 +21,24 @@ class DriverAddPhotosFragment : Fragment() {
 
     private var _addPhotosBinding: FragmentDriverAddPhotosBinding? = null
     private val addPhotosBinding get() = _addPhotosBinding!!
-    private val driverLiveData: DriverLiveData by activityViewModels()
+    private val driverViewModel: DriverViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        driverLiveData.docType.value += "0"
+        driverViewModel.docType.value += "0"
         _addPhotosBinding = FragmentDriverAddPhotosBinding.inflate(inflater, container, false)
 
-        if (driverLiveData.docType.value!!.contains("4")) {
+        if (driverViewModel.docType.value!!.contains("4")) {
             addPhotosBinding.cbPassport.isChecked = true
         }
 
-        if (driverLiveData.docType.value!!.contains("5")) {
+        if (driverViewModel.docType.value!!.contains("5")) {
             addPhotosBinding.cbDlFront.isChecked = true
         }
 
-        if (driverLiveData.docType.value!!.contains("6")) {
+        if (driverViewModel.docType.value!!.contains("6")) {
             addPhotosBinding.cbDlBack.isChecked = true
         }
         return addPhotosBinding.root
@@ -48,23 +48,23 @@ class DriverAddPhotosFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         addPhotosBinding.tvAddPhotosGreetings.text =
-            addPhotosBinding.tvAddPhotosGreetings.text.toString() + " " + driverLiveData.driverData.value!!.driverName
+            addPhotosBinding.tvAddPhotosGreetings.text.toString() + " " + driverViewModel.driverData.value!!.driverName
 
         addPhotosBinding.cvPassport.setOnClickListener {
-            driverLiveData.docType.value += "1"
+            driverViewModel.docType.value += "1"
             view.findNavController()
                 .navigate(R.id.action_driverAddPhotosFragment_to_driverAuthMakePhotoFragment)
         }
 
         addPhotosBinding.cvDlFront.setOnClickListener {
-            driverLiveData.docType.value += "2"
+            driverViewModel.docType.value += "2"
             view.findNavController()
                 .navigate(R.id.action_driverAddPhotosFragment_to_driverAuthMakePhotoFragment)
 
         }
 
         addPhotosBinding.cvDlBack.setOnClickListener {
-            driverLiveData.docType.value += "3"
+            driverViewModel.docType.value += "3"
             view.findNavController()
                 .navigate(R.id.action_driverAddPhotosFragment_to_driverAuthMakePhotoFragment)
         }
@@ -75,8 +75,8 @@ class DriverAddPhotosFragment : Fragment() {
                 "Спасибо, данные отправлены на проверку!",
                 Toast.LENGTH_SHORT
             ).show()
-            Log.d("!!!done", driverLiveData.driverData.value.toString())
-            val intent = Intent(activity, DriverMapsActivity::class.java)
+            Log.d("!!!done", driverViewModel.driverData.value.toString())
+            val intent = Intent(activity, UserMapsActivity::class.java)
             startActivity(intent)
             requireActivity().onBackPressed()
         }

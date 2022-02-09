@@ -22,8 +22,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.mytaxi.R
 import com.example.mytaxi.databinding.FragmentDriverAuthMakePhotoBinding
-import com.example.mytaxi.presentation.viewmodels.DriverLiveData
-import com.example.mytaxi.presentation.activities.DriverMapsActivity
+import com.example.mytaxi.presentation.viewmodels.DriverViewModel
+import com.example.mytaxi.presentation.activities.UserMapsActivity
 import com.github.florent37.camerafragment.CameraFragment
 import com.github.florent37.camerafragment.configuration.Configuration
 import com.github.florent37.camerafragment.listeners.CameraFragmentResultListener
@@ -49,22 +49,22 @@ class DriverAuthMakePhotoFragment : Fragment() {
     private lateinit var cameraFragment: CameraFragment
     private var _cameraBinding: FragmentDriverAuthMakePhotoBinding? = null
     private val cameraBinding get() = _cameraBinding!!
-    private val driverLiveData: DriverLiveData by activityViewModels()
+    private val driverViewModel: DriverViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        if (driverLiveData.docType.value!!.contains("1") && driverLiveData.driverData.value?.passportPhoto == null) {
+        if (driverViewModel.docType.value!!.contains("1") && driverViewModel.driverData.value?.passportPhoto == null) {
             file = FILE_PASSPORT
         }
 
-        if (driverLiveData.docType.value!!.contains("2") && driverLiveData.driverData.value?.licenceFace == null) {
+        if (driverViewModel.docType.value!!.contains("2") && driverViewModel.driverData.value?.licenceFace == null) {
             file = FILE_DL_FRONT
         }
 
-        if (driverLiveData.docType.value!!.contains("3") && driverLiveData.driverData.value?.licenceBack == null) {
+        if (driverViewModel.docType.value!!.contains("3") && driverViewModel.driverData.value?.licenceBack == null) {
             file = FILE_DL_BACK
         }
         _cameraBinding = FragmentDriverAuthMakePhotoBinding.inflate(inflater, container, false)
@@ -116,19 +116,19 @@ class DriverAuthMakePhotoFragment : Fragment() {
 
         cameraBinding.btnSave.setOnClickListener {
             val bitmap = (cameraBinding.imageView.drawable as BitmapDrawable).bitmap
-            if (driverLiveData.docType.value!!.contains("1") && file == FILE_PASSPORT) {
-                driverLiveData.docType.value += "4"
-                driverLiveData.driverData.value!!.passportPhoto = bitmap
+            if (driverViewModel.docType.value!!.contains("1") && file == FILE_PASSPORT) {
+                driverViewModel.docType.value += "4"
+                driverViewModel.driverData.value!!.passportPhoto = bitmap
             }
 
-            if (driverLiveData.docType.value!!.contains("2") && file == FILE_DL_FRONT) {
-                driverLiveData.docType.value += "5"
-                driverLiveData.driverData.value!!.licenceFace = bitmap
+            if (driverViewModel.docType.value!!.contains("2") && file == FILE_DL_FRONT) {
+                driverViewModel.docType.value += "5"
+                driverViewModel.driverData.value!!.licenceFace = bitmap
             }
 
-            if (driverLiveData.docType.value!!.contains("3") && file == FILE_DL_BACK) {
-                driverLiveData.docType.value += "6"
-                driverLiveData.driverData.value!!.licenceBack = bitmap
+            if (driverViewModel.docType.value!!.contains("3") && file == FILE_DL_BACK) {
+                driverViewModel.docType.value += "6"
+                driverViewModel.driverData.value!!.licenceBack = bitmap
             }
 
             view.findNavController()
@@ -217,7 +217,7 @@ class DriverAuthMakePhotoFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        val intent = Intent(activity, DriverMapsActivity::class.java)
+        val intent = Intent(activity, UserMapsActivity::class.java)
         startActivity(intent)
     }
 

@@ -10,7 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.mytaxi.R
 import com.example.mytaxi.databinding.FragmentDriverStartAuthBinding
-import com.example.mytaxi.presentation.viewmodels.DriverLiveData
+import com.example.mytaxi.presentation.viewmodels.DriverViewModel
 import com.example.mytaxi.presentation.models.DriverModel
 
 class DriverStartAuthFragment : Fragment() {
@@ -18,7 +18,7 @@ class DriverStartAuthFragment : Fragment() {
 
     private var _startAuthBinding: FragmentDriverStartAuthBinding? = null
     private val startAuthBinding get() = _startAuthBinding!!
-    private val driverLiveData: DriverLiveData by activityViewModels()
+    private val driverViewModel: DriverViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -75,7 +75,7 @@ class DriverStartAuthFragment : Fragment() {
                     licenceBack = null
                 )
 
-                driverLiveData.driverData.value = driverData
+                driverViewModel.driverData.value = driverData
 
                 view.findNavController()
                     .navigate(R.id.action_driverStartAuthFragment_to_driverAuthPartnershipFragment)

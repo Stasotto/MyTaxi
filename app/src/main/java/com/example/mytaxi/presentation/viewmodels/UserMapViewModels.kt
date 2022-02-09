@@ -17,11 +17,6 @@ class UserMapViewModels(
         var a: DistanceResponse? = null
         var b: DirectionResponse? = null
     }
-//    private val _distance = MutableLiveData<DistanceResponse>()
-//    val distance: LiveData<DistanceResponse> get() = _distance
-//
-//    private val _direction = MutableLiveData<DirectionResponse>()
-//    val direction: LiveData<DirectionResponse> get() = _direction
 
     fun getDirection(origin: String, destination: String) {
         viewModelScope.launch {

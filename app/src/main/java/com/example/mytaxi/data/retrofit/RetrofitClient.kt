@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    const val API_KEY = "AIzaSyAcF7MXsAIiOjo1YR7rH6DN8cZ59-argEY"
+    const val API_KEY = "key"
     private const val BASE_URL = "https://maps.googleapis.com/"
 
     private var gson: Gson = GsonBuilder()
