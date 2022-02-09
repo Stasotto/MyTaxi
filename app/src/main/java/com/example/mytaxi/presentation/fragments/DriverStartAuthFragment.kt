@@ -1,7 +1,6 @@
-package com.example.mytaxi.presentation.activities
+package com.example.mytaxi.presentation.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.mytaxi.R
 import com.example.mytaxi.databinding.FragmentDriverStartAuthBinding
+import com.example.mytaxi.presentation.viewmodels.DriverLiveData
+import com.example.mytaxi.presentation.models.DriverModel
 
 class DriverStartAuthFragment : Fragment() {
 

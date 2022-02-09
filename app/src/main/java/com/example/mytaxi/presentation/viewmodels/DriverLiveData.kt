@@ -1,7 +1,8 @@
-package com.example.mytaxi.presentation.activities
+package com.example.mytaxi.presentation.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.mytaxi.presentation.models.DriverModel
 
 class DriverLiveData : ViewModel() {
 

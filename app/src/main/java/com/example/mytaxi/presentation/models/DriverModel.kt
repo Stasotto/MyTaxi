@@ -1,4 +1,4 @@
-package com.example.mytaxi.presentation.activities
+package com.example.mytaxi.presentation.models
 
 import android.graphics.Bitmap
 
