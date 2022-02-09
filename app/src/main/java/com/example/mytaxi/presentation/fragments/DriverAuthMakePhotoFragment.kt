@@ -1,4 +1,4 @@
-package com.example.mytaxi.presentation.activities
+package com.example.mytaxi.presentation.fragments
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -14,7 +14,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -23,6 +22,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.mytaxi.R
 import com.example.mytaxi.databinding.FragmentDriverAuthMakePhotoBinding
+import com.example.mytaxi.presentation.viewmodels.DriverLiveData
+import com.example.mytaxi.presentation.activities.DriverMapsActivity
 import com.github.florent37.camerafragment.CameraFragment
 import com.github.florent37.camerafragment.configuration.Configuration
 import com.github.florent37.camerafragment.listeners.CameraFragmentResultListener

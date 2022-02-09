@@ -1,18 +1,18 @@
 package com.example.mytaxi.presentation.viewmodels
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mytaxi.data.RetrofitClient
 import com.example.mytaxi.data.models.DirectionResponse
 import com.example.mytaxi.data.models.DistanceResponse
-import com.google.android.gms.tasks.Tasks.await
+import com.example.mytaxi.domain.usecase.GetDirectionUseCase
+import com.example.mytaxi.domain.usecase.GetDistanceUseCase
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
-class UserMapViewModels : ViewModel() {
+class UserMapViewModels(
+    private val getDirectionUseCase: GetDirectionUseCase,
+    private val getDistanceUseCase: GetDistanceUseCase
+) : ViewModel() {
     companion object {
         var a: DistanceResponse? = null
         var b: DirectionResponse? = null
@@ -26,12 +26,10 @@ class UserMapViewModels : ViewModel() {
     fun getDirection(origin: String, destination: String) {
         viewModelScope.launch {
             val direction = async {
-                return@async RetrofitClient.getDirectionApi()
-                    .getDirections(origin = origin, destination = destination)
+                return@async getDirectionUseCase.execute(origin, destination)
             }
             val distance = async {
-                return@async RetrofitClient.getDirectionApi()
-                    .getDistance(origin = origin, destination = destination)
+                return@async getDistanceUseCase.execute(origin, destination)
             }
             b = direction.await()
             a = distance.await()

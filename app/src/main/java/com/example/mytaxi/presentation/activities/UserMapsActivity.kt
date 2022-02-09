@@ -7,12 +7,9 @@ import android.os.Handler
 import android.text.Editable
 import android.util.Log
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.os.postDelayed
-import androidx.lifecycle.ViewModelProvider
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.mytaxi.R
 import com.example.mytaxi.data.models.Route
@@ -32,8 +29,9 @@ import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.AutocompleteActivity
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.google.maps.android.PolyUtil
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class UserMapsActivity : AppCompatActivity(R.layout.activity_maps), OnMapReadyCallback, Runnable{
+class UserMapsActivity : AppCompatActivity(R.layout.activity_maps), OnMapReadyCallback, Runnable {
 
     private val handler by lazy { Handler() }
     private var mMap: GoogleMap? = null
@@ -45,11 +43,7 @@ class UserMapsActivity : AppCompatActivity(R.layout.activity_maps), OnMapReadyCa
     private val fusedLocationProviderClient: FusedLocationProviderClient by lazy {
         LocationServices.getFusedLocationProviderClient(this)
     }
-    private val userMapViewModel: UserMapViewModels by lazy {
-        ViewModelProvider(this).get(
-            UserMapViewModels::class.java
-        )
-    }
+    private val userMapViewModel: UserMapViewModels by viewModel()
     private fun openDriverStartAuthFrag() {
         binding.floating.setOnClickListener {
             startActivity(Intent(this, DriverAuthActivity::class.java))
@@ -67,7 +61,7 @@ class UserMapsActivity : AppCompatActivity(R.layout.activity_maps), OnMapReadyCa
     }
 
     private fun showDirection() {
-        if(UserMapViewModels.b != null) {
+        if (UserMapViewModels.b != null) {
             val routeList: List<Route> = UserMapViewModels.b!!.routes
             for (route in routeList) {
                 val polyline = route.overViewPolyline.points
@@ -88,7 +82,7 @@ class UserMapsActivity : AppCompatActivity(R.layout.activity_maps), OnMapReadyCa
             mMap?.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 100))
             UserMapViewModels.b = null
         }
-        }
+    }
 
     override fun run() {
         showDirection()
@@ -98,16 +92,6 @@ class UserMapsActivity : AppCompatActivity(R.layout.activity_maps), OnMapReadyCa
 
     override fun onMapReady(p0: GoogleMap) {
         mMap = p0
-    }
-
-    private fun getDistance() {
-        if(UserMapViewModels.a != null) {
-            val alert = AlertDialog.Builder(this)
-                .setTitle("Info")
-                .setMessage("${UserMapViewModels?.a?.rows?.get(0)?.elements?.get(0)?.distance},${UserMapViewModels?.a?.rows?.get(0)?.elements?.get(0)?.duration}")
-                .create()
-            alert.show()
-        }
     }
 
     private fun checkPermissions() {
@@ -148,7 +132,7 @@ class UserMapsActivity : AppCompatActivity(R.layout.activity_maps), OnMapReadyCa
 
     private fun initUserMapFrag() {
         supportFragmentManager.beginTransaction()
-            .add(R.id.containerFrag, UserMapFragment.newInstance(), UserMapFragment.TAG)
+            .replace(R.id.containerFrag, UserMapFragment.newInstance(), UserMapFragment.TAG)
             .commit()
     }
 
@@ -167,6 +151,7 @@ class UserMapsActivity : AppCompatActivity(R.layout.activity_maps), OnMapReadyCa
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        var counter = 0
         if (requestCode == 100 && resultCode == RESULT_OK) {
             val place = Autocomplete.getPlaceFromIntent(data!!)
             binding.editText.text = Editable.Factory.getInstance().newEditable(place.address)
@@ -176,8 +161,10 @@ class UserMapsActivity : AppCompatActivity(R.layout.activity_maps), OnMapReadyCa
                 destination = "${selectedPosition?.position?.latitude}, ${selectedPosition?.position?.longitude}"
             )
             showDirection()
-            getDistance()
-            initUserMapFrag()
+            if (counter == 0) {
+                initUserMapFrag()
+                ++counter
+            }
 
         } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
             Log.d("MyLog", "else")
@@ -191,5 +178,4 @@ class UserMapsActivity : AppCompatActivity(R.layout.activity_maps), OnMapReadyCa
         mMap?.addMarker(MarkerOptions().position(location))
         mMap?.moveCamera(CameraUpdateFactory.newLatLng(location))
     }
-
 }

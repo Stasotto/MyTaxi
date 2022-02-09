@@ -1,4 +1,4 @@
-package com.example.mytaxi.presentation.activities
+package com.example.mytaxi.presentation.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,6 +12,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.mytaxi.R
 import com.example.mytaxi.databinding.FragmentDriverAddPhotosBinding
+import com.example.mytaxi.presentation.viewmodels.DriverLiveData
+import com.example.mytaxi.presentation.activities.DriverMapsActivity
 
 
 class DriverAddPhotosFragment : Fragment() {

@@ -1,24 +1,15 @@
 package com.example.mytaxi.presentation.fragments
 
-import android.app.Activity.RESULT_OK
-import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.Toast
-import androidx.annotation.RequiresApi
+import androidx.cardview.widget.CardView
+import androidx.core.view.isVisible
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.mytaxi.R
 import com.example.mytaxi.databinding.FragmentStartMapBinding
-import com.google.android.libraries.places.api.Places
-import com.google.android.libraries.places.api.model.Place
-import com.google.android.libraries.places.widget.Autocomplete
-import com.google.android.libraries.places.widget.AutocompleteActivity
-import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
+import com.example.mytaxi.databinding.ItemCarTypeBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class StartMapDialogFrag : BottomSheetDialogFragment() {
@@ -29,37 +20,43 @@ class StartMapDialogFrag : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_start_map, container, false)
-        initPlace()
     }
 
-    private fun initPlace() {
-        Places.initialize(requireContext().applicationContext, "AIzaSyBql8HcWnoE_0nA1lT3tbs8N4sfC6vokb8")
-        binding.editText.setOnClickListener {
-            val fieldList: List<Place.Field> = listOf(Place.Field.ADDRESS, Place.Field.LAT_LNG, Place.Field.NAME)
-
-            val intent = Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fieldList).build(requireContext())
-            startActivityForResult(intent, 100)
-        }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initLayout()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 100 && resultCode == RESULT_OK) {
-            val place = Autocomplete.getPlaceFromIntent(data!!)
-            binding.editText.text = Editable.Factory.getInstance().newEditable(place.address)
-            binding.textView.text = place.name
-            binding.textView2.text = place.latLng.toString()
-        } else  if(resultCode == AutocompleteActivity.RESULT_ERROR) {
-            val status = Autocomplete.getStatusFromIntent(data!!)
-            Toast.makeText(requireContext(), status.statusMessage, Toast.LENGTH_SHORT).show()
-        }
+    private fun initLayout() {
+        val arrayOfCars = arrayOf(
+            "Эконом",
+            "Комфорт",
+            "Комфорт+",
+            "Бизнес",
+            "Детский",
+            "Электро",
+            "Быстрый"
+        )
 
+        val itemList = (arrayOfCars.indices).map {
+            val cardView = view?.findViewById<CardView>(R.id.cardView)
+            val view = LayoutInflater.from(context).inflate(R.layout.item_car_type, cardView, false)
+            val itemBinding: ItemCarTypeBinding = ItemCarTypeBinding.bind(view)
+            itemBinding.root.id = View.generateViewId()
+            itemBinding.tvCar.text = arrayOfCars[it]
+            itemBinding.root.setOnClickListener {
+                itemBinding.viewRound.isVisible = !itemBinding.viewRound.isVisible
+            }
+            binding.linear.addView(itemBinding.root)
+            itemBinding
+        }
+        binding.flow.referencedIds = itemList.map { it.root.id }.toIntArray()
     }
 
     companion object {
         const val TAG = "Start Map Dialog"
+
         @JvmStatic
         fun newInstance() = StartMapDialogFrag()
     }
